@@ -1,0 +1,15 @@
+
+  "codestral-autocomplete.apiKey": "NUHpWNTK64cZ1NS2XksQ4R7cxntj9ecB",
+  "codestral-autocomplete.apiEndpoint": "https://codestral.mistral.ai/v1/fim/completions",
+  "codestral-autocomplete.model": "codestral-latest",
+  "codestral-autocomplete.enabled": true,
+  "codestral-autocomplete.manualMode": false,
+  "codestral-autocomplete.maxTokens": 128,
+  "codestral-autocomplete.customShortcut": "ctrl+k",
+  "codestral-autocomplete.enableLogging": true,
+  "editor.inlineSuggest.showToolbar": "always",
+  "codestral-autocomplete.debounceDelay": 1000,
+  "codestral-autocomplete.temperature": 0,
+  "codestral-autocomplete.timeout": 10000,
+  "codestral-autocomplete.minTriggerChars": 4,
+  "codestral-autocomplete.triggerOnNewLine": true

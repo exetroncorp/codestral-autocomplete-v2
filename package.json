@@ -1,0 +1,165 @@
+{
+  "name": "codestral-autocomplete-v2",
+  "displayName": "Codestral Autocomplete - Enhanced",
+  "description": "Enhanced VS Code autocomplete extension using Codestral with Continue-inspired completion logic",
+  "version": "2.0.0",
+  "publisher": "codestral-dev",
+  "engines": {
+    "vscode": "^1.70.0",
+    "node": ">=16.0.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Snippets",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "codestral",
+    "autocomplete",
+    "ai",
+    "completion",
+    "mistral",
+    "tab-completion"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Codestral Autocomplete",
+      "properties": {
+        "codestral-autocomplete.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Codestral API key",
+          "markdownDescription": "Your Codestral API key. Get one from [Mistral AI](https://console.mistral.ai/)"
+        },
+        "codestral-autocomplete.apiEndpoint": {
+          "type": "string",
+          "default": "https://codestral.mistral.ai/v1/fim/completions",
+          "description": "Codestral API endpoint URL"
+        },
+        "codestral-autocomplete.model": {
+          "type": "string",
+          "default": "codestral-latest",
+          "description": "Codestral model to use"
+        },
+        "codestral-autocomplete.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable autocomplete"
+        },
+        "codestral-autocomplete.manualMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Only trigger completions manually (Ctrl+Space)"
+        },
+        "codestral-autocomplete.debounceDelay": {
+          "type": "number",
+          "default": 300,
+          "description": "Debounce delay in milliseconds"
+        },
+        "codestral-autocomplete.timeout": {
+          "type": "number",
+          "default": 10000,
+          "description": "Request timeout in milliseconds"
+        },
+        "codestral-autocomplete.maxTokens": {
+          "type": "number",
+          "default": 32,
+          "description": "Maximum tokens to generate"
+        },
+        "codestral-autocomplete.temperature": {
+          "type": "number",
+          "default": 0.1,
+          "description": "Temperature for completion generation"
+        },
+        "codestral-autocomplete.enableLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging"
+        },
+        "codestral-autocomplete.minTriggerChars": {
+          "type": "number",
+          "default": 2,
+          "description": "Minimum characters to trigger autocomplete"
+        },
+        "codestral-autocomplete.useCache": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable completion caching"
+        },
+        "codestral-autocomplete.ignoreSslErrors": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore SSL/TLS certificate errors (use with caution)"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "codestral-autocomplete.toggle",
+        "title": "Toggle Autocomplete",
+        "category": "Codestral"
+      },
+      {
+        "command": "codestral-autocomplete.forceCompletion",
+        "title": "Force Completion",
+        "category": "Codestral"
+      },
+      {
+        "command": "codestral-autocomplete.clearCache",
+        "title": "Clear Cache",
+        "category": "Codestral"
+      },
+      {
+        "command": "codestral-autocomplete.showLogs",
+        "title": "Show Logs",
+        "category": "Codestral"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "codestral-autocomplete.forceCompletion",
+        "key": "ctrl+alt+space",
+        "mac": "cmd+alt+space",
+        "when": "editorTextFocus && !editorHasSelection && !editorReadOnly"
+      },
+      {
+        "command": "codestral-autocomplete.toggle",
+        "key": "ctrl+k ctrl+a",
+        "mac": "cmd+k cmd+a"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.70.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.15.0",
+    "eslint": "^8.28.0",
+    "node-fetch": "^3.3.2",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "diff": "^5.1.0",
+    "lru-cache": "^7.18.3",
+    "node-fetch": "^3.3.2"
+  }
+}
